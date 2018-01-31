@@ -1,7 +1,7 @@
 
 actor_dict = {}
 movie_dict = {}
-
+node = []
 
 
 
@@ -12,13 +12,15 @@ def readfile(filename):
 			actor_in_movie = line.strip().split("|")
 			actor = actor_in_movie[0]
 			movie = actor_in_movie[1]
-						
+			
+			if actor not in node:
+				node.append(actor)
 			if movie not in movie_dict:
 				list = []
 				list.append(actor)
 				movie_dict[movie] = list
 			else:
-				movie_dict[movie].append(actor)
+				movie_dict[movie].append(node.index(actor))
 	f.close()
 	
 def builddict():	
@@ -39,7 +41,7 @@ def output(outfile):
 	for key1 in actor_dict:
 		for key2 in actor_dict[key1]:
 			if key2 not in visited:
-				s =  '"'+key1+'"' + ' ' + '"'+ key2+'"'
+				s =  str(key1)+ ' ' + str(key2)
 				edge.append(s)
 		visited.append(key1)
 	
@@ -84,7 +86,7 @@ def addtodict(key1, key2):
 def main ():
 	readfile("imdb.small.txt")
 	builddict()
-	output("imdb.small_graph.txt")
+	output("imdb.small_graph_v1.txt")
 
 
 if __name__ == "__main__":
