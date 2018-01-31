@@ -14,7 +14,7 @@ def read_graph(filename):
                 # Split lines by chosen character.
                 nodes = line.strip().split('+')
                 # Format string example:
-                print ("Node 0: %s\tNode 1: %s" % (nodes[0], nodes[1]) )
+                #print ("Node 0: %s\tNode 1: %s" % (nodes[0], nodes[1]) )
                 # Add edge to graph with integer IDs.
                 #g.add_edge(int(nodes[0]),int(nodes[1]))
                 g.add_edge(nodes[0],nodes[1])
@@ -41,18 +41,26 @@ def run_dfs_using_nx(g, s):
 def Bacon(g, s):
 	bfs_tree = nx.bfs_tree(g,s)
 	bacon = [1]
-	neighbours_list = bfs_tree.neighbours(s)
+	neighbours_list = list(bfs_tree.neighbors(s))
 	bacon.append(len(neighbours_list))
-	count = 1;
+	count = 2;
 	
-	
-	while(count < 6):
+	while(count < 7):
+		next_neigh =[]
+		bacon.append(0)
 		for n in neighbours_list:
-			
-		len(list(bfs_tree.neighbours(curr))-1
-		count++
+			next_neigh += list(bfs_tree.neighbors(n))
+			bacon[count] += len(list(bfs_tree.neighbors(n)))
+		neighbours_list = next_neigh 
+		count += 1
 	
-
+	total = 0;
+	for i in range(0,len(bacon)):
+		total += bacon[i]
+		print("{} {}".format(i, bacon[i]))
+	print(g.number_of_nodes())
+	print(total)
+	print("other: {}".format(g.number_of_nodes() - total))
     
 
 def main(fn, s):
@@ -63,6 +71,7 @@ def main(fn, s):
     #run_bfs_using_nx(g,s)
     
     #run_dfs_using_nx(g,s)
+    Bacon(g,s)
     
 
 
