@@ -58,8 +58,8 @@ def Bacon(g, s):
 	for i in range(0,len(bacon)):
 		total += bacon[i]
 		print("{} {}".format(i, bacon[i]))
-	print(g.number_of_nodes())
-	print(total)
+	#print(g.number_of_nodes())
+	#print(total)
 	print("other: {}".format(g.number_of_nodes() - total))
     
 
