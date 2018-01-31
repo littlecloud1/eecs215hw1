@@ -49,17 +49,23 @@ def Bacon(g, s):
 
 
     count = 1
+    currlayer = []
     while(count < 7):
-        currlayer = []
+        # print(count)
+
         if count == 1:
             next_neighbor = list(bfs_tree.neighbors(s))
         else:
-            next_neighbor = currlayer
+            for y in currlayer:
+                next_neighbor += bfs_tree.neighbors(y)
             currlayer = []
         for x in next_neighbor:
+            # print('next',next_neighbor)
             currlayer += list(bfs_tree.neighbors(x))
+            # print('curr',currlayer)
             bacon[count] += len(list(bfs_tree.neighbors(x)))
         count += 1
+        next_neighbor = []
 
 
 
