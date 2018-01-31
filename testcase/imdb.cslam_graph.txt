@@ -1,9 +1,9 @@
 5
 7
-Alice Bob
-Alice Carol
-Alice Dave
-Bob Carol
-Carol Dave
-Carol Eve
-Dave Eve
+Carol+Alice
+Carol+Dave
+Carol+Eve
+Carol+Bob
+Dave+Eve
+Dave+Alice
+Bob+Alice

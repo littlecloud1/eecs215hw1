@@ -1,7 +1,7 @@
 import sys
 actor_dict = {}
 movie_dict = {}
-node = []
+#node = []
 
 
 
@@ -13,14 +13,16 @@ def readfile(filename):
 			actor = actor_in_movie[0]
 			movie = actor_in_movie[1]
 			
-			if actor not in node:
-				node.append(actor)
+			#if actor not in node:
+			#	node.append(actor)
 			if movie not in movie_dict:
 				list = []
-				list.append(node.index(actor))
+				#list.append(node.index(actor))
+				list.append(actor)
 				movie_dict[movie] = list
 			else:
-				movie_dict[movie].append(node.index(actor))
+				#movie_dict[movie].append(node.index(actor))
+				movie_dict[movie].append(actor)
 				
 		
 	f.close()
@@ -43,7 +45,7 @@ def output(outfile):
 	for key1 in actor_dict:
 		for key2 in actor_dict[key1]:
 			if key2 not in visited:
-				s =  str(key1)+ ' ' + str(key2)
+				s =  str(key1)+ '+'+str(key2)
 				edge.append(s)
 		visited.append(key1)
 	
@@ -88,7 +90,7 @@ def addtodict(key1, key2):
 def main (argv):
 	readfile(argv[1])
 	builddict()
-	output(sys.argv[2])
+	output(argv[2])
 
 
 if __name__ == "__main__":
