@@ -1,4 +1,4 @@
-
+import sys
 actor_dict = {}
 movie_dict = {}
 node = []
@@ -17,10 +17,12 @@ def readfile(filename):
 				node.append(actor)
 			if movie not in movie_dict:
 				list = []
-				list.append(actor)
+				list.append(node.index(actor))
 				movie_dict[movie] = list
 			else:
 				movie_dict[movie].append(node.index(actor))
+				
+		
 	f.close()
 	
 def builddict():	
@@ -83,14 +85,14 @@ def addtodict(key1, key2):
 				
 
 
-def main ():
-	readfile("imdb.small.txt")
+def main (argv):
+	readfile(argv[1])
 	builddict()
-	output("imdb.small_graph_v1.txt")
+	output(sys.argv[2])
 
 
 if __name__ == "__main__":
-	main()
+	main(sys.argv)
 
 
 
