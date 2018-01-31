@@ -1,0 +1,72 @@
+
+
+actor_dict = {}
+movie_dict = {}
+graph_sets = []
+def readfile(filename):
+    with open(filename) as f:
+        for line in f:
+            actor_in_movie = line.strip().split("|")
+            actor = actor_in_movie[0]
+            movie = actor_in_movie[1]
+
+        # ...  build  your  data  structure
+            if actor not in actor_dict:
+                list =[]
+                list.append(movie)
+                actor_dict[actor] = list
+
+            else:
+                actor_dict[actor].append(movie)
+
+
+            if movie not in movie_dict:
+                list =[]
+                list.append(actor)
+                movie_dict[movie] = list
+            else:
+                movie_dict[movie].append(actor)
+
+def create_pair():
+    for a in list(actor_dict.keys()):
+        for m in actor_dict[a]:
+            for another_a in movie_dict[m]:
+                if another_a != a:
+                    actor_set = [another_a,a]
+                    global graph_sets
+                    if [another_a,a] not in graph_sets and [a,another_a] not in graph_sets:
+                        graph_sets.append(actor_set)
+
+
+def main():
+    readfile("hw1_2.txt")
+    # print(actor_dict)
+    # print(movie_dict)
+    # print()
+    create_pair()
+    # print(graph_sets)
+    edges = len(graph_sets)
+    actors = len(actor_dict.keys())
+    # print("There are ",len(actor_dict.keys())," actors in total")
+    # print("Edges # is",len(graph_sets))
+    createinputfile(actors,edges,graph_sets)
+
+
+def createinputfile(actors,edges,graph_sets):
+    outF = open("actorgraph2.txt", "w")
+    outF.write(str(actors))
+    outF.write("\n")
+    outF.write(str(edges))
+    outF.write("\n")
+    for line in graph_sets:
+        outF.write("(")
+        outF.write(line[0])
+        outF.write(") (")
+        outF.write(line[1])
+        outF.write(")")
+        outF.write("\n")
+        print(line)
+    outF.close()
+
+
+main()
