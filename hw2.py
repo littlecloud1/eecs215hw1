@@ -1,4 +1,13 @@
+"""
+Hw1 bouns ex2: Caculate bacon nubmer using BFS
+Output the #vectice, #edges and nodes pair:movie+actor.
 
+1/23/2018
+
+lai man tang
+yuan qin
+
+"""
 import networkx as nx
 import matplotlib.pyplot as plt
 import sys
@@ -12,31 +21,19 @@ def read_graph(filename):
         for line in fp:
             if l>1:
                 # Split lines by chosen character.
-                nodes = line.strip().split('+')
-                # Format string example:
-                #print ("Node 0: %s\tNode 1: %s" % (nodes[0], nodes[1]) )
-                # Add edge to graph with integer IDs.
-                #g.add_edge(int(nodes[0]),int(nodes[1]))
+                nodes = line.strip().split('+') 
+                # Add edge to graph with node's name.
                 g.add_edge(nodes[0],nodes[1])
             l+=1
                
     return g
 
+# this function doesn't called in this exercise	
 def draw_graph(g):
     
     nx.draw_networkx(g)
     # Draw graph in separate window.
     plt.show() 
-
-def run_bfs_using_nx(g, s):
-    
-    bfs_tree = nx.bfs_tree(g,s)
-    draw_graph(bfs_tree)
-    
-def run_dfs_using_nx(g, s):
-    
-    dfs_tree = nx.dfs_tree(g,s)
-    draw_graph(dfs_tree)
 
 def Bacon(g, s):
 	bfs_tree = nx.bfs_tree(g,s)
@@ -49,28 +46,23 @@ def Bacon(g, s):
 		next_neigh =[]
 		bacon.append(0)
 		for n in neighbours_list:
+			#accumulate the #neighbors in each level	
 			next_neigh += list(bfs_tree.neighbors(n))
 			bacon[count] += len(list(bfs_tree.neighbors(n)))
 		neighbours_list = next_neigh 
 		count += 1
-	
+		
+    #Output on screen
+	print("Bacon number  Frequency")
 	total = 0;
 	for i in range(0,len(bacon)):
 		total += bacon[i]
 		print("{} {}".format(i, bacon[i]))
-	#print(g.number_of_nodes())
-	#print(total)
-	print("other: {}".format(g.number_of_nodes() - total))
+	print("Unreachable {}".format(g.number_of_nodes() - total))
     
 
 def main(fn, s):
     g = read_graph(fn)
-    
-    #draw_graph(g)
-    
-    #run_bfs_using_nx(g,s)
-    
-    #run_dfs_using_nx(g,s)
     Bacon(g,s)
     
 
