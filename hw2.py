@@ -1,6 +1,6 @@
 """
-Hw1 bouns ex2: Caculate bacon nubmer using BFS
-Output the #vectice, #edges and nodes pair:movie+actor.
+Hw1 bouns ex2: Calculate bacon nubmer using BFS
+Output the 6 level bacon numbers and it frequence.
 
 1/23/2018
 
