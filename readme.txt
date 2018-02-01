@@ -59,6 +59,6 @@ Unreachable 663
 
 	python hw3_3 [outputfile from hw3] [target node]
 	
-bipartite is faster.
-
+bipartite is faster since it is a more natural representation of the relationships between movies and actors and other actors.
+It saves a lot time and space on creating another actor to actor relations.
 
