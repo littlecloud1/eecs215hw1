@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Hw1 bouns ex3.
+Hw1 bouns ex3: Bacon output
 use a bipartite graph to represent the relationship with
 the movies and actor.
 
